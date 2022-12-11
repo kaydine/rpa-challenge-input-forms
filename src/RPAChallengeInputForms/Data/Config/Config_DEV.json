@@ -51,6 +51,12 @@
   "assets":{
 
   },
-  "assets_Desc":"Assets to be retrieved from Orchestrator. Set the Asset Name in key and leave the value blank."
+  "assets_Desc":"Assets to be retrieved from Orchestrator. Set the Asset Name in key and leave the value blank.",
+
+  "projSettings": {
+    "rpaChallengeInputFormsUrl": "https://www.rpachallenge.com/",
+    "rpaChallengeInputFormsUrl_Desc": "URL to RPA challenge input forms."
+
+  }
 
 }

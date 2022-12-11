@@ -4,11 +4,12 @@
     <x:Property sap2010:Annotation.AnnotationText="Used during transitions between states to represent exceptions other than business exceptions." Name="in_SystemException" Type="InArgument(s:Exception)" />
     <x:Property sap2010:Annotation.AnnotationText="JSON object to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(njl:JObject)" />
     <x:Property sap2010:Annotation.AnnotationText="Used to control the number of attempts of retrying the process in case of system exceptions." Name="io_RetryNumber" Type="InOutArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="Browser session of RPA challenge website" Name="in_RPAChallengeBrowser" Type="InArgument(ui:Browser)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1199,1326</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1030,1326</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SetTransactionStatus_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -228,7 +229,7 @@
                   <av:Size x:Key="ShapeSize">200,205</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, log as Failed (Exception Type: Application)." DisplayName="Sequence: System Exception" sap:VirtualizedContainerService.HintSize="200,205" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, log as Failed (Exception Type: Application)." DisplayName="Sequence: System Exception" sap:VirtualizedContainerService.HintSize="400,793" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="screenshotPath" />
                 </Sequence.Variables>
@@ -286,14 +287,14 @@
                     <InArgument x:TypeArguments="x:Int32">[io_RetryNumber+1]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:LogMessage DisplayName="Log Message: Retry number" sap:VirtualizedContainerService.HintSize="338,128" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Retry number counter is &quot; + io_RetryNumber.ToString + &quot;.&quot;]">
+                <ui:LogMessage DisplayName="Log Message: Retry number" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Retry number counter is &quot; + io_RetryNumber.ToString + &quot;.&quot;]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:LogMessage>
-                <TryCatch sap2010:Annotation.AnnotationText="Close all applications before returning to the Initialization state and opening them again.&#xA;If applications cannot be closed, kill their respective processes." DisplayName="Try Catch: Try closing applications" sap:VirtualizedContainerService.HintSize="338,210" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+                <TryCatch sap2010:Annotation.AnnotationText="Close all applications before returning to the Initialization state and opening them again.&#xA;If applications cannot be closed, kill their respective processes." DisplayName="Try Catch: Try closing applications" sap:VirtualizedContainerService.HintSize="438,452" sap2010:WorkflowViewState.IdRef="TryCatch_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -302,14 +303,21 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke: CloseAllApplications workflow" sap:VirtualizedContainerService.HintSize="334,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework\Dispatcher_CloseAllApplications.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke: CloseAllApplications workflow" sap:VirtualizedContainerService.HintSize="379,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework\Dispatcher_CloseAllApplications.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                        <InArgument x:TypeArguments="ui:Browser" x:Key="in_RPAChallengeBrowser">
+                          <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="in_RPAChallengeBrowser" />
+                        </InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
                     </ui:InvokeWorkflowFile>
                   </TryCatch.Try>
                   <TryCatch.Catches>
-                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="506,1026" sap2010:WorkflowViewState.IdRef="Catch`1_7">
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,25" sap2010:WorkflowViewState.IdRef="Catch`1_7">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -320,7 +328,7 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Sequence: Close applications" sap:VirtualizedContainerService.HintSize="500,953" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <Sequence DisplayName="Sequence: Close applications" sap:VirtualizedContainerService.HintSize="400,98" sap2010:WorkflowViewState.IdRef="Sequence_16">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
