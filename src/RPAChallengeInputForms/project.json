@@ -1,6 +1,6 @@
 {
-  "name": "UiPathTemplateTransactional",
-  "description": "UiPath project template based on Robotic Enterprise Framework for transactional process.",
+  "name": "RPAChallengeInputForms",
+  "description": "Input Forms challenge in rpachallenge.com",
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[2.16.0]",
