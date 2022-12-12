@@ -1,86 +1,36 @@
-There are 2 types of UiPath project templates provided in this repository. Both are based on the Robotic Enterprise Framework, also known as REFramework, template of UiPath modified based on the type of process -- Non-transactional and Transactional.
+# R001 RPA Challenge Input Forms
 
-# Non-transactional Process
-Process expected to execute only once. The REFramework was used to utilize its error handling and retry mechanism, and was mainly modified to remove the Get Transaction Data state since there is no transaction to process.
-## Flow
-*This diagram does not include error handling flow*
-```mermaid
-flowchart TD;
-    A[Initialization] --> B[Process];
-    B --> C[End Process];
-```
+## Project Details
 
-# Transactional Process
-Process expected to process multiple transactions. This template type contains 3 main workflows:
-1.	Controller (Main.xaml) - Runs the dispatcher then the performer
-2.	Dispatcher (Dispatcher_Main.xaml) - Creates the transactions and stores to queue. The dispatcher uses the non-transactional template structure.
-3.	Performer (Performer_Main.xaml) - Processes the transactions in the queue. The performer uses the original REFramework structure.
+### Process Overview
+<!--- Brief description of what the process does -->
+Below is the instructions for this challenge.
+1. The goal of this challenge is to create a workflow that will input data from a spreadsheet into the form fields on the screen.
+2. Beware! The fields will change position on the screen after every submission throughout 10 rounds thus the workflow must correctly identify where each spreadsheet record must be typed every time.
+3. The actual countdown of the challenge will begin once you click the Start button until then you may submit the form as many times as you wish without receiving penalties.
 
-## Flow
-This diagram does not include error handling flow
-```mermaid
-flowchart TD;
-    S[START] -- Dispatcher --> D-A;
-    D-A[Initialization] --> D-B;
-    D-B[Process create & add transaction] --> D-C;
-    D-C[End Process] -- Performer --> P-A;
-    
-    P-A[Initialization] --> P-B;
-    P-B[Get Transaction] --> P-BCD;
-    P-BCD{Transaction retrieved?} -- Yes --> P-C;
-    P-BCD -- No --> P-D;
-    P-C[Process transaction] --> P-B;
-    P-D[End Process] --> E[END]
-```
-# All Modifications
-List of all modifications done on REFramework to achieve these templates
-## Both non-transactional and transactional
-- Follow naming convention
-    - Activity display name: *Activity Name*: *description*
-    - Variable name: camelCase
-    - Workflow name: PascalCase
+This project solves the Input Forms challenge in rpachallenge.com.
+It uses the uipath-template transactional process type to implement the dispatcher-performer model to demonstrate robustness, scalability, and maintainability. The dispatcher downloads the input Excel file, creates the transactions based on the data in the file, and add the transactions to the Orchestrator queue. The performer then gets these transactions and process each.
 
-- Change config file from Excel to JSON
-    - Not application dependent
-    - Can run RPA even if config file is opened
+### Robot Type
+<!--- Attended / Unattended -->
+Unattended
 
-- Load config file based on environment flag (DEV/TEST/PROD)
-    - Main configuration file should follow filename format: Config_{environment}.json
-    - Environment flag can be set from "in_EnvironmentFlag" In Argument of Main.xaml
-- Removed log messages from config
+## Getting Started
 
-- TakeScreenshot
-    - Moved from Framework to Common folder
-    - Add screen selector in_argument to have option to screenshot specific UI
+### Applications Used And Installation
+<!--- Which version of UiPath, other applications used by the robot, application version, and how to install them -->
+- Excel
+- Microsoft Edge - UiPath Web Automation extension should installed
 
-- Work folder
-    - Added automatic create/delete of work folder where temporary files used in the process can be stored. This folder is deleted after processing the current transaction
+### Configurations
+<!--- Any pre-requisites (like input files in certain directories, queue and assets in Orchestrator, etc.) -->
+- Orchestrator queue *(see Config generalSettings\queueName for the queue name used)*
 
-- Backup folder
-    - Added automatic create/delete of backup folder which gets deleted when number of days set in config file passes
+## Documentations
 
-- End Process other clean up process
-    - Modify End Process state to add try catch for other clean up process
+### Solution Design Document
+N/A
 
-- GetTransactionData
-    - Set transaction reference as transaction ID
-
-- Deleted unnecessary files and arguments (e.g. out_TransactionField1, io_dt_TransactionData, etc.)
-
-- Consecutive system exception retry number log and exception message
-    - Main.xaml > Initialization state > Changed counter in exception message to remove +1
-    - SetTransactionStatus > System Exception > Moved consecutive system exception log to after increment
-
-## Non-transactional only
-- Remove get transaction data process
-    - Deleted "Get Transaction Data" state and GetTransactionData.xaml
-    - Deleted transaction-related variables and arguments
-    - Initialization state Successful transition goes to Process state
-    - Process state Success transition goes to End Process
-    - Process state Business Exception transition goes to End Process
-    - Deleted RetryCurrentTransaction.xaml: Retry mechanism will be handled through ConsecutiveSystemException
-    - Renamed SetTransactionStatus.xaml to SetProcessStatus.xaml
-
-## Transactional only
-- Implement dispatcher and performer model
-    - Use original REFramework as performer, and non-transactional template as dispatcher
+### User Manual
+N/A
