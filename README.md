@@ -10,7 +10,7 @@ Below is the instructions for this challenge.
 3. The actual countdown of the challenge will begin once you click the Start button until then you may submit the form as many times as you wish without receiving penalties.
 
 This project solves the Input Forms challenge in rpachallenge.com.
-It uses the uipath-template transactional process type to implement the dispatcher-performer model. The dispatcher downloads the input Excel file, creates the transactions based on the data in the file, and add the transactions to the Orchestrator queue. The performer then gets these transactions and process each.
+It uses the uipath-template transactional process type to implement the dispatcher-performer model to demonstrate robustness, scalability, and maintainability. The dispatcher downloads the input Excel file, creates the transactions based on the data in the file, and add the transactions to the Orchestrator queue. The performer then gets these transactions and process each.
 
 ### Robot Type
 <!--- Attended / Unattended -->
@@ -25,6 +25,7 @@ Unattended
 
 ### Configurations
 <!--- Any pre-requisites (like input files in certain directories, queue and assets in Orchestrator, etc.) -->
+- Orchestrator queue *(see Config generalSettings\queueName for the queue name used)*
 
 ## Documentations
 
