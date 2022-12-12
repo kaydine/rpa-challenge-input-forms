@@ -97,6 +97,13 @@
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\ReadInputFileTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "88db5878-55e3-4b62-b37c-0c3968bbd14e",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "fileName": "Tests\\InputFormRPAChallengeTestCase.xaml"
       }
     ],
     "modernBehavior": true

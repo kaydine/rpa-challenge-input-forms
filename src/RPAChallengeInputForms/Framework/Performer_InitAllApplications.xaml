@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1030,562</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -102,7 +102,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login) specific to the performer." DisplayName="Sequence: Initialize All Applications (Performer)" sap:VirtualizedContainerService.HintSize="400,497" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login) specific to the performer." DisplayName="Sequence: Initialize All Applications (Performer)" sap:VirtualizedContainerService.HintSize="400,602" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -119,12 +119,8 @@
     </ui:LogMessage>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Do for common first" DisplayName="Invoke Workflow File: Framework\Common_InitAllApplications.xaml" sap:VirtualizedContainerService.HintSize="338,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\Common_InitAllApplications.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="njl:JObject" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="in_Config" />
-        </InArgument>
-        <OutArgument x:TypeArguments="ui:Browser" x:Key="out_RPAChallengeBrowser">
-          <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="out_RPAChallengeBrowser" />
-        </OutArgument>
+        <InArgument x:TypeArguments="njl:JObject" x:Key="in_Config">[in_Config]</InArgument>
+        <OutArgument x:TypeArguments="ui:Browser" x:Key="out_RPAChallengeBrowser">[out_RPAChallengeBrowser]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -135,5 +131,15 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
     <ui:Comment DisplayName="Comment: Implement specific below" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Implement specific to performer below" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File: StartRPAChallenge.xaml" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Browser\StartRPAChallenge.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:Browser" x:Key="in_RPAChallengeBrowser">[out_RPAChallengeBrowser]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>
