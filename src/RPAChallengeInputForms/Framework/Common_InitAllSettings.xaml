@@ -3,11 +3,12 @@
     <x:Property sap2010:Annotation.AnnotationText="Path to the configuration file that defines settings, constants and assets." Name="in_ConfigFile" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="JSON object to store configuration data of the process (settings, constants and assets)." Name="out_Config" Type="OutArgument(njl:JObject)" />
     <x:Property sap2010:Annotation.AnnotationText="Environment where the process will run. Values: DEV/TEST/PROD" Name="in_EnvironmentFlag" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="JSON object to store configuration data of data fields." Name="out_DataFieldsConfig" Type="OutArgument(njl:JObject)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>957,1191</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,1107</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetAllSettings_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="72">
@@ -123,7 +124,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Initialize, populate and output a configuration to be used throughout the project that are common on dispatcher and performer. &#xA;Settings and constants are read from the local configuration file, and assets are fetched from Orchestrator. &#xA;Asset values overwrite settings and constant values if they are defined with the same name." DisplayName="Sequence: Initialize All Settings (Common)" sap:VirtualizedContainerService.HintSize="618,1126" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="Initialize, populate and output a configuration to be used throughout the project that are common on dispatcher and performer. &#xA;Settings and constants are read from the local configuration file, and assets are fetched from Orchestrator. &#xA;Asset values overwrite settings and constant values if they are defined with the same name." DisplayName="Sequence: Initialize All Settings (Common)" sap:VirtualizedContainerService.HintSize="462,1042" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -131,21 +132,21 @@
         <x:Boolean x:Key="IsPinned">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message: Initialize All Settings" sap:VirtualizedContainerService.HintSize="556,65" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[&quot;Initializing settings (common)...&quot;]">
+    <ui:LogMessage DisplayName="Log Message: Initialize All Settings" sap:VirtualizedContainerService.HintSize="400,65" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[&quot;Initializing settings (common)...&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence DisplayName="Sequence: Load main config file" sap:VirtualizedContainerService.HintSize="556,98" sap2010:WorkflowViewState.IdRef="Sequence_13">
+    <Sequence DisplayName="Sequence: Load main config file" sap:VirtualizedContainerService.HintSize="400,98" sap2010:WorkflowViewState.IdRef="Sequence_13">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[String.IsNullOrEmpty(in_ConfigFile)]" DisplayName="If: Config file path is not specified, use default" sap:VirtualizedContainerService.HintSize="346,375" sap2010:WorkflowViewState.IdRef="If_7">
+      <If Condition="[String.IsNullOrEmpty(in_ConfigFile)]" DisplayName="If: Config file path is not specified, use default" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="If_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -163,7 +164,7 @@
           </Assign>
         </If.Then>
       </If>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke: LoadJSONFile.xaml (Main config)" sap:VirtualizedContainerService.HintSize="346,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Common\LoadJSONFile.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke: LoadJSONFile.xaml (Main config)" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Common\LoadJSONFile.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="in_JsonFilePath">[in_ConfigFile]</InArgument>
           <OutArgument x:TypeArguments="njl:JObject" x:Key="out_JsonObj">[out_Config]</OutArgument>
@@ -176,20 +177,20 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
     </Sequence>
-    <If Condition="[out_Config(&quot;assets&quot;) IsNot Nothing AndAlso out_Config(&quot;assets&quot;).Count &gt; 0]" DisplayName="If: Assets is defined in config" sap:VirtualizedContainerService.HintSize="556,65" sap2010:WorkflowViewState.IdRef="If_8">
+    <If Condition="[out_Config(&quot;assets&quot;) IsNot Nothing AndAlso out_Config(&quot;assets&quot;).Count &gt; 0]" DisplayName="If: Assets is defined in config" sap:VirtualizedContainerService.HintSize="400,65" sap2010:WorkflowViewState.IdRef="If_8">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each: For each assets property" sap:VirtualizedContainerService.HintSize="474,759" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[out_Config(&quot;assets&quot;)]">
+        <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each: For each assets property" sap:VirtualizedContainerService.HintSize="436,439" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[out_Config(&quot;assets&quot;)]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="njl:JProperty">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="njl:JProperty" Name="assetProp" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Sequence: Get asset from Orchestrator" sap:VirtualizedContainerService.HintSize="438,620" sap2010:WorkflowViewState.IdRef="Sequence_16">
+              <Sequence DisplayName="Sequence: Get asset from Orchestrator" sap:VirtualizedContainerService.HintSize="400,300" sap2010:WorkflowViewState.IdRef="Sequence_16">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Object" Name="assetValue" />
                 </Sequence.Variables>
@@ -199,10 +200,10 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:RetryScope DisplayName="Retry Scope: Get Orchestrator Asset" sap:VirtualizedContainerService.HintSize="376,385" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(out_Config(&quot;generalSettings&quot;)(&quot;retryNumberOrchestratorActivities&quot;))]">
+                <ui:RetryScope DisplayName="Retry Scope: Get Orchestrator Asset" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(out_Config(&quot;generalSettings&quot;)(&quot;retryNumberOrchestratorActivities&quot;))]">
                   <ui:RetryScope.ActivityBody>
                     <ActivityAction>
-                      <ui:GetRobotAsset AssetName="[assetProp.Name]" CacheStrategy="None" DisplayName="Get Asset: from Orchestrator" FolderPath="[out_Config(&quot;generalSettings&quot;)(&quot;assetFolder&quot;).toString]" sap:VirtualizedContainerService.HintSize="334,193" sap2010:WorkflowViewState.IdRef="GetRobotAsset_7">
+                      <ui:GetRobotAsset AssetName="[assetProp.Name]" CacheStrategy="None" DisplayName="Get Asset: from Orchestrator" FolderPath="[out_Config(&quot;generalSettings&quot;)(&quot;assetFolder&quot;).toString]" sap:VirtualizedContainerService.HintSize="334,197" sap2010:WorkflowViewState.IdRef="GetRobotAsset_7">
                         <ui:GetRobotAsset.TimeoutMS>
                           <InArgument x:TypeArguments="x:Int32" />
                         </ui:GetRobotAsset.TimeoutMS>
@@ -222,7 +223,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:RetryScope>
-                <Assign DisplayName="Assign: Asset value to Config" sap:VirtualizedContainerService.HintSize="376,73" sap2010:WorkflowViewState.IdRef="Assign_28">
+                <Assign DisplayName="Assign: Asset value to Config" sap:VirtualizedContainerService.HintSize="338,73" sap2010:WorkflowViewState.IdRef="Assign_28">
                   <Assign.To>
                     <OutArgument x:TypeArguments="njl:JToken">[assetProp.Value]</OutArgument>
                   </Assign.To>
@@ -241,7 +242,7 @@
         </ui:ForEach>
       </If.Then>
       <If.Else>
-        <ui:LogMessage DisplayName="[Log message] no assets" sap:VirtualizedContainerService.HintSize="334,128" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;No assets defined for the process.&quot;]">
+        <ui:LogMessage DisplayName="[Log message] no assets" sap:VirtualizedContainerService.HintSize="218,65" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;No assets defined for the process.&quot;]">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -251,13 +252,13 @@
         </ui:LogMessage>
       </If.Else>
     </If>
-    <InvokeMethod DisplayName="Invoke Method: JObject.Add: Add environment flag in config" sap:VirtualizedContainerService.HintSize="556,153" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="AddBeforeSelf">
+    <InvokeMethod DisplayName="Invoke Method: JObject.Add: Add environment flag in config" sap:VirtualizedContainerService.HintSize="400,153" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="AddBeforeSelf">
       <InvokeMethod.TargetObject>
         <InArgument x:TypeArguments="njl:JContainer">[out_Config("generalSettings").Parent]</InArgument>
       </InvokeMethod.TargetObject>
       <InArgument x:TypeArguments="x:Object">[new JProperty("environmentFlag",in_EnvironmentFlag)]</InArgument>
     </InvokeMethod>
-    <Sequence sap2010:Annotation.AnnotationText="Create backup folder and delete old ones" DisplayName="Sequence: Backup folder" sap:VirtualizedContainerService.HintSize="556,356" sap2010:WorkflowViewState.IdRef="Sequence_19">
+    <Sequence sap2010:Annotation.AnnotationText="Create backup folder and delete old ones" DisplayName="Sequence: Backup folder" sap:VirtualizedContainerService.HintSize="400,129" sap2010:WorkflowViewState.IdRef="Sequence_19">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -374,5 +375,20 @@ Function(x) Date.Compare(
         </If>
       </Sequence>
     </Sequence>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File: LoadJSONFile.xaml (DataFieldsConfig)" sap:VirtualizedContainerService.HintSize="400,65" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Common\LoadJSONFile.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_JsonFilePath">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="out_Config(&quot;projSettings&quot;)(&quot;dataFieldsConfigPath&quot;).ToString" />
+        </InArgument>
+        <OutArgument x:TypeArguments="njl:JObject" x:Key="out_JsonObj">
+          <VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="out_DataFieldsConfig" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>

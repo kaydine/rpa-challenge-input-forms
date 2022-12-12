@@ -1,0 +1,52 @@
+{
+  "transactionData": {
+    "firstName":{
+      "fieldName": "FirstName"
+    },
+    "lastName":{
+      "fieldName": "LastName"
+    },
+    "companyName":{
+      "fieldName": "CompanyName"
+    },
+    "roleInCompany":{
+      "fieldName": "RoleInCompany"
+    },
+    "address":{
+      "fieldName": "Address"
+    },
+    "email":{
+      "fieldName": "Email"
+    },
+    "phoneNumber":{
+      "fieldName": "PhoneNumber"
+    }
+  },
+
+  "inputFile": {
+    "firstName":{
+      "fieldName": "First Name"
+    },
+    "lastName":{
+      "fieldName": "Last Name "
+    },
+    "companyName":{
+      "fieldName": "Company Name"
+    },
+    "roleInCompany":{
+      "fieldName": "Role in Company"
+    },
+    "address":{
+      "fieldName": "Address"
+    },
+    "email":{
+      "fieldName": "Email"
+    },
+    "phoneNumber":{
+      "fieldName": "Phone Number"
+    }
+  }
+
+
+
+}

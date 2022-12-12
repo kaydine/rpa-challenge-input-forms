@@ -3,11 +3,12 @@
     <x:Property sap2010:Annotation.AnnotationText="Path to the configuration file that defines settings, constants and assets." Name="in_ConfigFile" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="JSON object to store configuration data of the process (settings, constants and assets)." Name="out_Config" Type="OutArgument(njl:JObject)" />
     <x:Property sap2010:Annotation.AnnotationText="Environment where the process will run. Values: DEV/TEST/PROD" Name="in_EnvironmentFlag" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="JSON object to store configuration data of data fields." Name="out_DataFieldsConfig" Type="OutArgument(njl:JObject)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>698,607</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,607</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetAllSettings_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="72">
@@ -140,9 +141,18 @@
     </ui:LogMessage>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File: Framework\Common_InitAllSettings.xaml" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\Common_InitAllSettings.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">[in_ConfigFile]</InArgument>
-        <OutArgument x:TypeArguments="njl:JObject" x:Key="out_Config">[out_Config]</OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_EnvironmentFlag">[in_EnvironmentFlag]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ConfigFile" />
+        </InArgument>
+        <OutArgument x:TypeArguments="njl:JObject" x:Key="out_Config">
+          <VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="out_Config" />
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_EnvironmentFlag">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_EnvironmentFlag" />
+        </InArgument>
+        <OutArgument x:TypeArguments="njl:JObject" x:Key="out_DataFieldsConfig">
+          <VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="out_DataFieldsConfig" />
+        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">

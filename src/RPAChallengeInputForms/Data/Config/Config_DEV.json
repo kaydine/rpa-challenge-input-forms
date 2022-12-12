@@ -55,8 +55,13 @@
 
   "projSettings": {
     "rpaChallengeInputFormsUrl": "https://www.rpachallenge.com/",
-    "rpaChallengeInputFormsUrl_Desc": "URL to RPA challenge input forms."
+    "rpaChallengeInputFormsUrl_Desc": "URL to RPA challenge input forms.",
 
+    "inputFileSheetName": "Sheet1",
+    "inputFileSheetName_Desc": "Sheet name of data in input Excel file.",
+
+    "dataFieldsConfigPath": "Data\\Config\\DataFieldsConfig.json",
+    "dataFieldsConfigPath_Desc": "Path to data fields config file."
   }
 
 }

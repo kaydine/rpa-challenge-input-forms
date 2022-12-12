@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DownloadInputFileTestCase" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1030,747" sap2010:WorkflowViewState.IdRef="TestWorkflowTemplate_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DownloadInputFileTestCase" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="860,747" sap2010:WorkflowViewState.IdRef="TestWorkflowTemplate_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="72">
+    <scg:List x:TypeArguments="x:String" Capacity="37">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -100,6 +100,7 @@
   <sap:WorkflowViewStateService.ViewState>
     <scg:Dictionary x:TypeArguments="x:String, x:Object">
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
   <Sequence sap2010:Annotation.AnnotationText="Template workflow used to create tests for workflows in the process.&#xA;Create a new test workflow by copying and renaming this file." DisplayName="DownloadInputFileTestCase" sap:VirtualizedContainerService.HintSize="462,682" sap2010:WorkflowViewState.IdRef="Sequence_10">
@@ -107,6 +108,7 @@
       <Variable x:TypeArguments="njl:JObject" sap2010:Annotation.AnnotationText="JSON object to store configuration data." Name="Config" />
       <Variable x:TypeArguments="ui:Browser" Name="rpaChallengeBrowser" />
       <Variable x:TypeArguments="x:String" Name="inputFilePath" />
+      <Variable x:TypeArguments="njl:JObject" Name="dataFieldsConfig" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -115,7 +117,7 @@
         <x:Boolean x:Key="IsPinned">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - TestTemplate" sap:VirtualizedContainerService.HintSize="400,65" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Testing workflow DownloadInputFileTestCase&quot;]">
+    <ui:LogMessage DisplayName="Log Message - DownloadInputFileTestCase" sap:VirtualizedContainerService.HintSize="400,65" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Testing workflow DownloadInputFileTestCase&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -130,20 +132,15 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="400,65" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Framework\Performer_InitAllSettings.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File: Dispatcher_InitAllSettings.xaml" sap:VirtualizedContainerService.HintSize="478,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Framework\Dispatcher_InitAllSettings.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile" />
           <OutArgument x:TypeArguments="njl:JObject" x:Key="out_Config">[Config]</OutArgument>
           <InArgument x:TypeArguments="x:String" x:Key="in_EnvironmentFlag">DEV</InArgument>
+          <OutArgument x:TypeArguments="njl:JObject" x:Key="out_DataFieldsConfig">[dataFieldsConfig]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke InitAllApplications workflow" sap:VirtualizedContainerService.HintSize="400,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\Performer_InitAllApplications.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File: Dispatcher_InitAllApplications.xaml" sap:VirtualizedContainerService.HintSize="478,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\Dispatcher_InitAllApplications.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="njl:JObject" x:Key="in_Config">[Config]</InArgument>
           <OutArgument x:TypeArguments="ui:Browser" x:Key="out_RPAChallengeBrowser">[rpaChallengeBrowser]</OutArgument>
@@ -154,7 +151,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <Sequence sap2010:Annotation.AnnotationText="Setup work folder to be used by process" DisplayName="Sequence: Setup work folder" sap:VirtualizedContainerService.HintSize="400,129" sap2010:WorkflowViewState.IdRef="Sequence_11">
+      <Sequence sap2010:Annotation.AnnotationText="Setup work folder to be used by process" DisplayName="Sequence: Setup work folder" sap:VirtualizedContainerService.HintSize="478,992" sap2010:WorkflowViewState.IdRef="Sequence_11">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -162,7 +159,7 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:LogMessage DisplayName="Log Message: Setup work folder" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[&quot;Setting up work folder...&quot;]">
+        <ui:LogMessage DisplayName="Log Message: Setup work folder" sap:VirtualizedContainerService.HintSize="416,128" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[&quot;Setting up work folder...&quot;]">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -170,7 +167,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:LogMessage>
-        <Assign sap2010:Annotation.AnnotationText="Override workfolder in config to include current date" DisplayName="Assign: Process work folder" sap:VirtualizedContainerService.HintSize="338,123" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign sap2010:Annotation.AnnotationText="Override workfolder in config to include current date" DisplayName="Assign: Process work folder" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="Assign_1">
           <Assign.To>
             <OutArgument x:TypeArguments="njl:JToken">[config("generalSettings")("workFolderPath")]</OutArgument>
           </Assign.To>
@@ -183,18 +180,18 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </Assign>
-        <If Condition="[Directory.Exists(config(&quot;generalSettings&quot;)(&quot;workFolderPath&quot;).ToString)]" DisplayName="If: Delete work folder if exists (before process)" sap:VirtualizedContainerService.HintSize="338,65" sap2010:WorkflowViewState.IdRef="If_2">
+        <If Condition="[Directory.Exists(config(&quot;generalSettings&quot;)(&quot;workFolderPath&quot;).ToString)]" DisplayName="If: Delete work folder if exists (before process)" sap:VirtualizedContainerService.HintSize="416,375" sap2010:WorkflowViewState.IdRef="If_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <If.Then>
             <ui:DeleteFolderX DisplayName="Delete Folder: Work folder (before process)" sap:VirtualizedContainerService.HintSize="334,93" sap2010:WorkflowViewState.IdRef="DeleteFolderX_1" Path="[config(&quot;generalSettings&quot;)(&quot;workFolderPath&quot;).ToString]" Recursive="True" />
           </If.Then>
         </If>
-        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder: Work folder" sap:VirtualizedContainerService.HintSize="338,93" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[config(&quot;generalSettings&quot;)(&quot;workFolderPath&quot;).ToString]">
+        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder: Work folder" sap:VirtualizedContainerService.HintSize="416,93" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[config(&quot;generalSettings&quot;)(&quot;workFolderPath&quot;).ToString]">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -214,15 +211,9 @@
       <ui:Comment DisplayName="Actions to be performed" sap:VirtualizedContainerService.HintSize="338,84" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Workflow to be invoked or actions to be performed" />
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Browser\DownloadInputFile.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="338,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Browser\DownloadInputFile.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="ui:Browser" x:Key="in_RPAChallengeBrowser">
-            <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="rpaChallengeBrowser" />
-          </InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_DLFolder">
-            <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;generalSettings&quot;)(&quot;workFolderPath&quot;).ToString" />
-          </InArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="out_InputFilePath">
-            <VisualBasicReference x:TypeArguments="x:String" ExpressionText="inputFilePath" />
-          </OutArgument>
+          <InArgument x:TypeArguments="ui:Browser" x:Key="in_RPAChallengeBrowser">[rpaChallengeBrowser]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DLFolder">[Config("generalSettings")("workFolderPath").ToString]</InArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="out_InputFilePath">[inputFilePath]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -239,10 +230,10 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uta:VerifyControlAttribute AlternativeVerificationTitle="{x:Null}" KeepScreenshots="{x:Null}" OutputMessageFormat="{x:Null}" Result="{x:Null}" ScreenshotsPath="{x:Null}" ContinueOnFailure="True" DisplayName="Verify activity output" sap:VirtualizedContainerService.HintSize="379,65" sap2010:WorkflowViewState.IdRef="VerifyControlAttribute_3" Operator="Equality" OutputArgument="Exists" TakeScreenshotInCaseOfFailingAssertion="True" TakeScreenshotInCaseOfSucceedingAssertion="False">
+      <uta:VerifyControlAttribute AlternativeVerificationTitle="{x:Null}" KeepScreenshots="{x:Null}" OutputMessageFormat="{x:Null}" Result="{x:Null}" ScreenshotsPath="{x:Null}" ContinueOnFailure="True" DisplayName="Verify activity output" sap:VirtualizedContainerService.HintSize="534,269" sap2010:WorkflowViewState.IdRef="VerifyControlAttribute_3" Operator="Equality" OutputArgument="Exists" TakeScreenshotInCaseOfFailingAssertion="True" TakeScreenshotInCaseOfSucceedingAssertion="False">
         <uta:VerifyControlAttribute.ActivityToTest>
           <ActivityAction>
-            <ui:FileExistsX DisplayName="File Exists" sap:VirtualizedContainerService.HintSize="200,65" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[inputFilePath]">
+            <ui:FileExistsX DisplayName="File Exists: Input file" sap:VirtualizedContainerService.HintSize="334,150" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[inputFilePath]">
               <ui:FileExistsX.Exists>
                 <OutArgument x:TypeArguments="x:Boolean">
                   <VariableReference x:TypeArguments="x:Boolean">
@@ -282,17 +273,18 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uta:VerifyControlAttribute>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CloseAllApplications workflow" sap:VirtualizedContainerService.HintSize="379,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Framework\Performer_CloseAllApplications.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Dispatcher_CloseAllApplications.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="534,126" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Framework\Dispatcher_CloseAllApplications.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="ui:Browser" x:Key="in_RPAChallengeBrowser">[rpaChallengeBrowser]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <If Condition="[File.Exists(inputFilePath)]" sap:VirtualizedContainerService.HintSize="379,65" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[File.Exists(inputFilePath)]" DisplayName="If: Delete downloaded input file if exists" sap:VirtualizedContainerService.HintSize="534,375" sap2010:WorkflowViewState.IdRef="If_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -300,7 +292,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="334,93" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[inputFilePath]">
+          <ui:DeleteFileX DisplayName="Delete File: downloaded input file" sap:VirtualizedContainerService.HintSize="334,93" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[inputFilePath]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>

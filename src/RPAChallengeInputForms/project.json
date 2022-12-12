@@ -90,6 +90,13 @@
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
         "fileName": "Tests\\DownloadInputFileTestCase.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "b2480c54-3df9-4afa-b2c6-0412db03acbb",
+        "testCaseType": "TestCase",
+        "executionTemplateType": "Local",
+        "fileName": "Tests\\ReadInputFileTestCase.xaml"
       }
     ],
     "modernBehavior": true
