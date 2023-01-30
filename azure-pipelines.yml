@@ -15,7 +15,8 @@ steps:
     versionType: 'AutoVersion'
     projectJsonPath: '$(Build.SourcesDirectory)\src\RPAChallengeInputForms'
     orchestratorConnection: 'Orchestrator External Application Connection'
-    outputPath: '$(Build.ArtifactStagingDirectory)\Output'
+    outputPath: '$(Build.ArtifactStagingDirectory)\Packages\RPAChallengeInputForms'
+    outputType: 'Process'
     runWorkflowAnalysis: true
 - task: UiPathTest@2
   inputs:
